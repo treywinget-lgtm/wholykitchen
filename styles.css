@@ -1,4 +1,4 @@
-/* =============================================================
+//* =============================================================
    WholyKitchen — Complete Stylesheet
    Brand: Organic sauces & dressings
    Colors: Blue #A8D8F0 · Blue Dark #7ABFDF · Black #1a1a1a
@@ -17,9 +17,9 @@
   --blue:         #A8D8F0;
   --blue-light:   #d0ecf7;
   --blue-dark:    #7ABFDF;
-  --green:        #A8D8F0;
-  --green-light:  #c4e6f7;
-  --green-dark:   #7ABFDF;
+  --green:        #87CEEB;
+  --green-light:  #a8dbf0;
+  --green-dark:   #5eb5d6;
   --green-muted:  rgba(168, 216, 240, .15);
   --black:        #1a1a1a;
   --gray-dark:    #333333;
@@ -31,8 +31,8 @@
   --white:        #ffffff;
 
   /* Typography */
-  --font-body:    'Inter', 'Segoe UI', system-ui, sans-serif;
-  --font-brand:   'Caveat', cursive;
+  --font-body:    'Architects Daughter', cursive;
+  --font-brand:   'Architects Daughter', cursive;
 
   /* Shadows */
   --shadow-xs:    0 1px 3px rgba(0, 0, 0, .04);
@@ -40,7 +40,7 @@
   --shadow-md:    0 4px 20px rgba(0, 0, 0, .08);
   --shadow-lg:    0 8px 40px rgba(0, 0, 0, .12);
   --shadow-xl:    0 16px 60px rgba(0, 0, 0, .15);
-  --shadow-green: 0 4px 20px rgba(168, 216, 240, .35);
+  --shadow-green: 0 4px 20px rgba(135, 206, 235, .35);
 
   /* Misc */
   --radius-sm:    8px;
