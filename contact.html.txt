@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact | Wholly Kitchen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ===== NAVIGATION ===== -->
+  <nav class="navbar">
+    <div class="container nav-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="images/logo.png" alt="Wholly Kitchen">
+      </a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="shop.html">Shop</a>
+        <a href="contact.html">Contact</a>
+        <a href="shop.html" class="btn btn-primary nav-cta">Order Now</a>
+      </div>
+      <button class="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+  <div class="mobile-menu">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="shop.html">Shop</a>
+    <a href="contact.html">Contact</a>
+    <a href="shop.html" class="btn btn-primary" style="margin-top:1rem">Order Now</a>
+  </div>
+
+  <!-- ===== PAGE HERO ===== -->
+  <section class="page-hero">
+    <div class="container fade-up">
+      <span class="hero-tag">Get In Touch</span>
+      <h1>We&rsquo;d Love to<br>Hear From You</h1>
+      <p>Questions, wholesale inquiries, or just want to say hi? Drop us a line.</p>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT SECTION ===== -->
+  <section class="contact-section">
+    <div class="container contact-grid">
+
+      <div class="contact-info fade-up">
+        <h2>Let&rsquo;s Connect</h2>
+        <p>Whether you&rsquo;re curious about our ingredients, interested in stocking Wholly Kitchen in your store, or just want to share a recipe&mdash;we&rsquo;re all ears.</p>
+
+        <div class="contact-detail">
+          <div class="icon-circle">&#9993;</div>
+          <div>
+            <h4>Email</h4>
+            <p>hello@whollykitchen.com</p>
+          </div>
+        </div>
+
+        <div class="contact-detail">
+          <div class="icon-circle">&#9742;</div>
+          <div>
+            <h4>Phone</h4>
+            <p>(555) 123-4567</p>
+          </div>
+        </div>
+
+        <div class="contact-detail">
+          <div class="icon-circle">&#9873;</div>
+          <div>
+            <h4>Location</h4>
+            <p>Made with love in the USA</p>
+          </div>
+        </div>
+
+        <div class="contact-detail">
+          <div class="icon-circle">&#9202;</div>
+          <div>
+            <h4>Hours</h4>
+            <p>Mon&ndash;Fri: 9am &ndash; 5pm EST</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-form fade-up">
+        <form id="contactForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="firstName">First Name</label>
+              <input type="text" id="firstName" name="firstName" placeholder="Jane" required>
+            </div>
+            <div class="form-group">
+              <label for="lastName">Last Name</label>
+              <input type="text" id="lastName" name="lastName" placeholder="Doe" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="jane@example.com" required>
+          </div>
+          <div class="form-group">
+            <label for="subject">Subject</label>
+            <select id="subject" name="subject">
+              <option value="general">General Inquiry</option>
+              <option value="wholesale">Wholesale / Retail</option>
+              <option value="feedback">Product Feedback</option>
+              <option value="collab">Collaboration</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="Tell us what's on your mind..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">Send Message &rarr;</button>
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== CTA BANNER ===== -->
+  <section class="green-banner">
+    <div class="container fade-up">
+      <h2 class="brand-font">Follow the Journey</h2>
+      <p>Join our community on social media for recipes, behind-the-scenes, and new product drops.</p>
+      <div class="banner-badges">
+        <span class="banner-badge">@whollykitchen</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="images/logo.png" alt="Wholly Kitchen">
+          <p>Nothin added, nothin lost. Handcrafted organic sauces and dressings made with real, whole ingredients.</p>
+        </div>
+        <div>
+          <h4>Navigate</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Products</h4>
+          <ul>
+            <li><a href="shop.html">Vinaigrettes</a></li>
+            <li><a href="shop.html">Drizzles</a></li>
+            <li><a href="shop.html">Sauces</a></li>
+            <li><a href="shop.html">Gift Sets</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Connect</h4>
+          <ul>
+            <li><a href="#">Instagram</a></li>
+            <li><a href="#">Facebook</a></li>
+            <li><a href="#">TikTok</a></li>
+            <li><a href="contact.html">Email Us</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 Wholly Kitchen. All rights reserved.</span>
+        <div class="social-links">
+          <a href="#" aria-label="Instagram">IG</a>
+          <a href="#" aria-label="Facebook">FB</a>
+          <a href="#" aria-label="TikTok">TK</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

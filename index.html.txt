@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wholly Kitchen | Nothin Added, Nothin Lost</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ===== NAVIGATION ===== -->
+  <nav class="navbar">
+    <div class="container nav-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="images/logo.png" alt="Wholly Kitchen">
+      </a>
+      <div class="nav-links">
+        <a href="index.html" class="active">Home</a>
+        <a href="about.html">About</a>
+        <a href="shop.html">Shop</a>
+        <a href="contact.html">Contact</a>
+        <a href="shop.html" class="btn btn-primary nav-cta">Order Now</a>
+      </div>
+      <button class="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile menu overlay -->
+  <div class="mobile-menu">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="shop.html">Shop</a>
+    <a href="contact.html">Contact</a>
+    <a href="shop.html" class="btn btn-primary" style="margin-top:1rem">Order Now</a>
+  </div>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-content fade-up">
+        <span class="hero-tag">Organic &bull; Dairy-Free &bull; Gluten-Free</span>
+        <h1>Elevate Every Dish,<br><span>Naturally.</span></h1>
+        <p>Handcrafted organic sauces and dressings made with real ingredients. Nothing artificial&mdash;nothin added, nothin lost.</p>
+        <div class="hero-buttons">
+          <a href="shop.html" class="btn btn-primary">Shop Now &rarr;</a>
+          <a href="about.html" class="btn btn-outline">Our Story</a>
+        </div>
+      </div>
+      <div class="hero-image fade-up">
+        <img src="images/logo.png" alt="Wholly Kitchen logo">
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== VALUES ===== -->
+  <section class="values-section">
+    <div class="container">
+      <div class="section-header fade-up">
+        <img src="images/spiral.png" alt="" class="spiral-icon">
+        <h2>Why Wholly Kitchen?</h2>
+        <p>We believe what you put on your food matters just as much as the food itself.</p>
+      </div>
+      <div class="values-grid">
+        <div class="value-card fade-up">
+          <div class="value-icon">
+            <img src="images/spiral.png" alt="">
+          </div>
+          <h3>100% Organic</h3>
+          <p>Every single ingredient is certified organic. No pesticides, no synthetics, no shortcuts.</p>
+        </div>
+        <div class="value-card fade-up">
+          <div class="value-icon">
+            <img src="images/spiral.png" alt="">
+          </div>
+          <h3>Dairy &amp; Gluten Free</h3>
+          <p>Crafted to be inclusive so everyone can enjoy bold, wholesome flavor without compromise.</p>
+        </div>
+        <div class="value-card fade-up">
+          <div class="value-icon">
+            <img src="images/spiral.png" alt="">
+          </div>
+          <h3>Real Ingredients</h3>
+          <p>You can read and recognize every item on our label. No fillers, no preservatives, ever.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== GREEN BANNER ===== -->
+  <section class="green-banner">
+    <div class="container fade-up">
+      <h2 class="brand-font">Elevate &bull; Enhance &bull; Upgrade</h2>
+      <p>Transform your everyday meals with sauces made the way nature intended.</p>
+      <div class="banner-badges">
+        <span class="banner-badge">Organic</span>
+        <span class="banner-badge">Dairy &amp; Gluten Free</span>
+        <span class="banner-badge">Real Ingredients</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FEATURED PRODUCTS ===== -->
+  <section class="products-section">
+    <div class="container">
+      <div class="section-header fade-up">
+        <img src="images/spiral.png" alt="" class="spiral-icon">
+        <h2>Our Products</h2>
+        <p>Small-batch, handcrafted goodness made with love and real ingredients.</p>
+      </div>
+      <div class="products-grid">
+        <div class="product-card fade-up">
+          <div class="product-img">
+            <img src="images/creamy-peanut-thai.png" alt="Creamy Peanut Thai">
+          </div>
+          <div class="product-info">
+            <h3>Creamy Peanut Thai</h3>
+            <div class="price">$11.00</div>
+            <p>A rich, creamy peanut sauce with organic Thai-inspired spices. Perfect for noodles, wraps, and dipping.</p>
+            <a href="shop.html" class="btn btn-primary" style="width:100%;justify-content:center">View Details</a>
+          </div>
+        </div>
+        <div class="product-card fade-up">
+          <div class="product-img">
+            <img src="images/sweet-golden-tang.png" alt="Sweet Golden Tang">
+          </div>
+          <div class="product-info">
+            <h3>Sweet Golden Tang</h3>
+            <div class="price">$9.50</div>
+            <p>A sweet and tangy golden dressing that brightens up salads, bowls, and everything in between.</p>
+            <a href="shop.html" class="btn btn-primary" style="width:100%;justify-content:center">View Details</a>
+          </div>
+        </div>
+        <div class="product-card fade-up">
+          <div class="product-img">
+            <img src="images/crack.png" alt="Crack">
+          </div>
+          <div class="product-info">
+            <h3>Crack</h3>
+            <div class="price">$6.50</div>
+            <p>One taste and you&rsquo;ll know exactly how it got its name. Dangerously good on literally everything.</p>
+            <a href="shop.html" class="btn btn-primary" style="width:100%;justify-content:center">View Details</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA ===== -->
+  <section class="green-banner">
+    <div class="container fade-up">
+      <h2>Ready to Taste the Difference?</h2>
+      <p>Join thousands who have made the switch to real, organic flavor.</p>
+      <a href="shop.html" class="btn btn-white">Shop All Products &rarr;</a>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="images/logo.png" alt="Wholly Kitchen">
+          <p>Nothin added, nothin lost. Handcrafted organic sauces and dressings made with real, whole ingredients.</p>
+        </div>
+        <div>
+          <h4>Navigate</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Products</h4>
+          <ul>
+            <li><a href="shop.html">Vinaigrettes</a></li>
+            <li><a href="shop.html">Drizzles</a></li>
+            <li><a href="shop.html">Sauces</a></li>
+            <li><a href="shop.html">Gift Sets</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Connect</h4>
+          <ul>
+            <li><a href="#">Instagram</a></li>
+            <li><a href="#">Facebook</a></li>
+            <li><a href="#">TikTok</a></li>
+            <li><a href="contact.html">Email Us</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 Wholly Kitchen. All rights reserved.</span>
+        <div class="social-links">
+          <a href="#" aria-label="Instagram">IG</a>
+          <a href="#" aria-label="Facebook">FB</a>
+          <a href="#" aria-label="TikTok">TK</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

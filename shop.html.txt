@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop | Wholly Kitchen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ===== NAVIGATION ===== -->
+  <nav class="navbar">
+    <div class="container nav-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="images/logo.png" alt="Wholly Kitchen">
+      </a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="shop.html">Shop</a>
+        <a href="contact.html">Contact</a>
+        <a href="shop.html" class="btn btn-primary nav-cta">Order Now</a>
+      </div>
+      <button class="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+  <div class="mobile-menu">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="shop.html">Shop</a>
+    <a href="contact.html">Contact</a>
+    <a href="shop.html" class="btn btn-primary" style="margin-top:1rem">Order Now</a>
+  </div>
+
+  <!-- ===== PAGE HERO ===== -->
+  <section class="page-hero">
+    <div class="container fade-up">
+      <span class="hero-tag">Handcrafted &bull; Small Batch</span>
+      <h1>Shop Our Products</h1>
+      <p>Organic sauces and dressings made with ingredients you can actually pronounce.</p>
+    </div>
+  </section>
+
+  <!-- ===== PRODUCT GRID ===== -->
+  <section class="products-section">
+    <div class="container">
+      <div class="products-grid">
+
+        <div class="product-card fade-up">
+          <div class="product-img">
+            <img src="images/creamy-peanut-thai.png" alt="Creamy Peanut Thai">
+          </div>
+          <div class="product-info">
+            <h3>Creamy Peanut Thai</h3>
+            <div class="price">$11.00</div>
+            <p>A rich, creamy peanut sauce with organic Thai-inspired spices. Perfect for noodles, wraps, and dipping.</p>
+            <a href="#" class="btn btn-primary" style="width:100%;justify-content:center">Add to Cart</a>
+          </div>
+        </div>
+
+        <div class="product-card fade-up">
+          <div class="product-img">
+            <img src="images/sweet-golden-tang.png" alt="Sweet Golden Tang">
+          </div>
+          <div class="product-info">
+            <h3>Sweet Golden Tang</h3>
+            <div class="price">$9.50</div>
+            <p>A sweet and tangy golden dressing that brightens up salads, bowls, and everything in between.</p>
+            <a href="#" class="btn btn-primary" style="width:100%;justify-content:center">Add to Cart</a>
+          </div>
+        </div>
+
+        <div class="product-card fade-up">
+          <div class="product-img">
+            <img src="images/crack.png" alt="Crack">
+          </div>
+          <div class="product-info">
+            <h3>Crack</h3>
+            <div class="price">$6.50</div>
+            <p>One taste and you&rsquo;ll know exactly how it got its name. Dangerously good on literally everything.</p>
+            <a href="#" class="btn btn-primary" style="width:100%;justify-content:center">Add to Cart</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== INGREDIENTS CALLOUT ===== -->
+  <section class="green-banner">
+    <div class="container fade-up">
+      <h2>Know What You&rsquo;re Eating</h2>
+      <p>Every product contains only organic, recognizable ingredients. No fillers, no preservatives, no artificial anything.</p>
+      <div class="banner-badges">
+        <span class="banner-badge">Organic</span>
+        <span class="banner-badge">Dairy &amp; Gluten Free</span>
+        <span class="banner-badge">Real Ingredients</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="images/logo.png" alt="Wholly Kitchen">
+          <p>Nothin added, nothin lost. Handcrafted organic sauces and dressings made with real, whole ingredients.</p>
+        </div>
+        <div>
+          <h4>Navigate</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Products</h4>
+          <ul>
+            <li><a href="shop.html">Vinaigrettes</a></li>
+            <li><a href="shop.html">Drizzles</a></li>
+            <li><a href="shop.html">Sauces</a></li>
+            <li><a href="shop.html">Gift Sets</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Connect</h4>
+          <ul>
+            <li><a href="#">Instagram</a></li>
+            <li><a href="#">Facebook</a></li>
+            <li><a href="#">TikTok</a></li>
+            <li><a href="contact.html">Email Us</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 Wholly Kitchen. All rights reserved.</span>
+        <div class="social-links">
+          <a href="#" aria-label="Instagram">IG</a>
+          <a href="#" aria-label="Facebook">FB</a>
+          <a href="#" aria-label="TikTok">TK</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
