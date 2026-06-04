@@ -1148,12 +1148,14 @@ section {
   line-height: 1.7;
 }
 .footer-brand img {
-  height: 50px;
-  filter: brightness(1.8);
+  height: 120px;
+  filter: none;
+  border-radius: 8px;
+  margin-bottom: 12px;
   transition: var(--transition);
 }
 .footer-brand img:hover {
-  filter: brightness(2.2);
+  transform: scale(1.03);
 }
 
 /* Footer columns */
