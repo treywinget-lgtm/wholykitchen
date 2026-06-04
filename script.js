@@ -1,4 +1,4 @@
-//* ===== WholyKitchen - Main Script ===== */
+/* ===== WholyKitchen - Main Script ===== */
 
 document.addEventListener('DOMContentLoaded', () => {
 
