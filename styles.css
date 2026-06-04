@@ -1,7 +1,7 @@
 /* =============================================================
-   WhollyKitchen — Complete Stylesheet
+   WholyKitchen — Complete Stylesheet
    Brand: Organic sauces & dressings
-   Colors: Blue #A8D8F0 · Green #8CB934 · Black #1a1a1a
+   Colors: Blue #A8D8F0 · Blue Dark #7ABFDF · Black #1a1a1a
    Fonts: Caveat (brand) + Inter (body)
    ============================================================= */
 
@@ -17,10 +17,10 @@
   --blue:         #A8D8F0;
   --blue-light:   #d0ecf7;
   --blue-dark:    #7ABFDF;
-  --green:        #8CB934;
-  --green-light:  #a8d44e;
-  --green-dark:   #6E9A1E;
-  --green-muted:  rgba(140, 185, 52, .12);
+  --green:        #A8D8F0;
+  --green-light:  #c4e6f7;
+  --green-dark:   #7ABFDF;
+  --green-muted:  rgba(168, 216, 240, .15);
   --black:        #1a1a1a;
   --gray-dark:    #333333;
   --gray:         #666666;
@@ -40,7 +40,7 @@
   --shadow-md:    0 4px 20px rgba(0, 0, 0, .08);
   --shadow-lg:    0 8px 40px rgba(0, 0, 0, .12);
   --shadow-xl:    0 16px 60px rgba(0, 0, 0, .15);
-  --shadow-green: 0 4px 20px rgba(140, 185, 52, .25);
+  --shadow-green: 0 4px 20px rgba(168, 216, 240, .35);
 
   /* Misc */
   --radius-sm:    8px;
@@ -153,10 +153,10 @@ h4 { font-size: 1.1rem; }
   left: 100%;
 }
 
-/* Primary (green fill) */
+/* Primary (blue fill) */
 .btn-primary {
   background: var(--green);
-  color: var(--white);
+  color: var(--black);
   border-color: var(--green);
 }
 .btn-primary:hover {
@@ -186,7 +186,7 @@ h4 { font-size: 1.1rem; }
 /* White fill */
 .btn-white {
   background: var(--white);
-  color: var(--green);
+  color: var(--black);
   border-color: var(--white);
 }
 .btn-white:hover {
@@ -385,7 +385,7 @@ h4 { font-size: 1.1rem; }
   bottom: -150px; left: -150px;
   width: 450px; height: 450px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(140,185,52,.1) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(168,216,240,.1) 0%, transparent 70%);
   pointer-events: none;
 }
 
@@ -416,11 +416,21 @@ h4 { font-size: 1.1rem; }
 }
 
 .hero-content h1 {
-  margin-bottom: 1.2rem;
+  margin-bottom: .8rem;
   letter-spacing: -.5px;
 }
 .hero-content h1 span {
   color: var(--green);
+}
+
+/* Logo-matching tagline */
+.hero-tagline {
+  font-family: 'Architects Daughter', cursive !important;
+  font-size: 1.6rem !important;
+  color: var(--black) !important;
+  margin-bottom: 1.5rem !important;
+  letter-spacing: .5px;
+  line-height: 1.4;
 }
 
 .hero-content p {
@@ -554,7 +564,7 @@ section {
    ============================================================= */
 .green-banner {
   background: var(--green);
-  color: var(--white);
+  color: var(--black);
   text-align: center;
   padding: 4.5rem 0;
   position: relative;
@@ -570,7 +580,7 @@ section {
 }
 
 .green-banner h2 {
-  color: var(--white);
+  color: var(--black);
   margin-bottom: .8rem;
   position: relative;
 }
@@ -592,18 +602,19 @@ section {
   position: relative;
 }
 .banner-badge {
-  background: rgba(255, 255, 255, .18);
+  background: rgba(255, 255, 255, .5);
   padding: .8rem 1.8rem;
   border-radius: var(--radius-full);
   font-weight: 600;
   font-size: .9rem;
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
-  border: 1px solid rgba(255,255,255,.15);
+  border: 1px solid rgba(255,255,255,.4);
   transition: var(--transition);
+  color: var(--black);
 }
 .banner-badge:hover {
-  background: rgba(255, 255, 255, .28);
+  background: rgba(255, 255, 255, .7);
   transform: translateY(-2px);
 }
 

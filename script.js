@@ -1,4 +1,4 @@
-/* ===== WhollyKitchen - Main Script ===== */
+/* ===== WholyKitchen - Main Script ===== */
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const original = btn.textContent;
     btn.textContent = 'Message Sent!';
     btn.disabled = true;
-    btn.style.background = '#6E9A1E';
+    btn.style.background = '#7ABFDF';
 
     setTimeout(() => {
       btn.textContent = original;
