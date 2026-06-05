@@ -1148,9 +1148,11 @@ section {
   line-height: 1.7;
 }
 .footer-brand img {
-  height: 120px;
+  height: auto;
+  width: 100%;
+  max-width: 280px;
   filter: none;
-  border-radius: 8px;
+  border-radius: 12px;
   margin-bottom: 12px;
   transition: var(--transition);
 }
