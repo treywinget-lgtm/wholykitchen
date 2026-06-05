@@ -1150,7 +1150,7 @@ section {
 .footer-brand img {
   height: auto;
   width: 100%;
-  max-width: 280px;
+  max-width: 100%;
   filter: none;
   border-radius: 12px;
   margin-bottom: 12px;
