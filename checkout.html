@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout | WholyKitchen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Caveat:wght@500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ===== NAVIGATION ===== -->
+  <nav class="navbar">
+    <div class="container nav-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="images/logo.png" alt="WholyKitchen">
+      </a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="shop.html">Shop</a>
+        <a href="contact.html">Contact</a>
+        <a href="shop.html" class="btn btn-primary nav-cta">Order Now</a>
+      </div>
+      <button class="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+  <div class="mobile-menu">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="shop.html">Shop</a>
+    <a href="contact.html">Contact</a>
+    <a href="shop.html" class="btn btn-primary" style="margin-top:1rem">Order Now</a>
+  </div>
+
+  <!-- ===== CHECKOUT ===== -->
+  <section class="page-hero">
+    <div class="container">
+      <span class="hero-tag">Secure Checkout</span>
+      <h1>Your Cart</h1>
+      <p>Review your order, then continue to secure payment powered by Stripe.</p>
+    </div>
+  </section>
+
+  <section class="checkout-section">
+    <div class="container checkout-grid">
+
+      <!-- Cart items -->
+      <div class="checkout-items">
+        <div id="wk-cart-list"><!-- rendered by JS --></div>
+        <div id="wk-cart-empty" class="checkout-empty" hidden>
+          <p>Your cart is empty.</p>
+          <a href="shop.html" class="btn btn-primary">Browse the Shop</a>
+        </div>
+      </div>
+
+      <!-- Order summary -->
+      <aside class="checkout-summary">
+        <h3>Order Summary</h3>
+        <div class="summary-row"><span>Subtotal</span><span id="wk-subtotal">$0.00</span></div>
+        <div class="summary-row"><span>Shipping</span><span id="wk-shipping">$8.00</span></div>
+        <div class="summary-row summary-total"><span>Total</span><span id="wk-total">$0.00</span></div>
+        <button id="wk-pay" class="btn btn-primary btn-block" disabled>Proceed to Payment</button>
+        <p id="wk-pay-error" class="checkout-error" hidden></p>
+        <p class="checkout-note">🔒 You'll be redirected to Stripe to enter your shipping address and pay securely. Shipping is a flat rate for now.</p>
+      </aside>
+
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="images/logo.png" alt="WholyKitchen">
+        </div>
+        <div>
+          <h4>Navigate</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Products</h4>
+          <ul>
+            <li><a href="shop.html">Creamy Peanut Thai</a></li>
+            <li><a href="shop.html">Sweet Golden Tang</a></li>
+            <li><a href="shop.html">Crack</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Connect</h4>
+          <ul>
+            <li><a href="https://www.instagram.com/wholykitchen?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">Instagram</a></li>
+            <li><a href="contact.html">Email Us</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 WholyKitchen. All rights reserved.</span>
+        <div class="social-links">
+          <a href="https://www.instagram.com/wholykitchen?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" aria-label="Instagram">IG</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script src="cart.js"></script>
+  <script>
+    // ===== Checkout page logic =====
+    // Flat shipping shown here must match FLAT_SHIPPING_CENTS in the
+    // create-checkout-session function. (Replaced by live rates in Stage 2.)
+    var FLAT_SHIPPING_CENTS = 800;
+
+    var listEl = document.getElementById('wk-cart-list');
+    var emptyEl = document.getElementById('wk-cart-empty');
+    var payBtn = document.getElementById('wk-pay');
+    var errEl = document.getElementById('wk-pay-error');
+
+    function render() {
+      var items = window.WKCart.items();
+      var subtotal = window.WKCart.subtotal();
+
+      if (!items.length) {
+        listEl.innerHTML = '';
+        emptyEl.hidden = false;
+        payBtn.disabled = true;
+        document.getElementById('wk-subtotal').textContent = window.WKmoney(0);
+        document.getElementById('wk-shipping').textContent = window.WKmoney(0);
+        document.getElementById('wk-total').textContent = window.WKmoney(0);
+        return;
+      }
+
+      emptyEl.hidden = true;
+      payBtn.disabled = false;
+
+      listEl.innerHTML = items.map(function (i) {
+        return '' +
+          '<div class="cart-row" data-id="' + i.id + '">' +
+            '<img class="cart-row-img" src="' + i.image + '" alt="' + i.name + '">' +
+            '<div class="cart-row-info">' +
+              '<h4>' + i.name + '</h4>' +
+              '<div class="cart-row-price">' + window.WKmoney(i.price) + ' each</div>' +
+              '<button class="cart-row-remove" data-remove="' + i.id + '">Remove</button>' +
+            '</div>' +
+            '<div class="cart-qty">' +
+              '<button class="qty-btn" data-dec="' + i.id + '" aria-label="Decrease quantity">&minus;</button>' +
+              '<span class="qty-num">' + i.qty + '</span>' +
+              '<button class="qty-btn" data-inc="' + i.id + '" aria-label="Increase quantity">+</button>' +
+            '</div>' +
+            '<div class="cart-row-total">' + window.WKmoney(i.lineTotal) + '</div>' +
+          '</div>';
+      }).join('');
+
+      document.getElementById('wk-subtotal').textContent = window.WKmoney(subtotal);
+      document.getElementById('wk-shipping').textContent = window.WKmoney(FLAT_SHIPPING_CENTS);
+      document.getElementById('wk-total').textContent = window.WKmoney(subtotal + FLAT_SHIPPING_CENTS);
+    }
+
+    // Quantity / remove controls (event delegation)
+    listEl.addEventListener('click', function (e) {
+      var t = e.target;
+      if (t.dataset.inc) window.WKCart.add(t.dataset.inc, 1);
+      else if (t.dataset.dec) window.WKCart.setQty(t.dataset.dec, currentQty(t.dataset.dec) - 1);
+      else if (t.dataset.remove) window.WKCart.remove(t.dataset.remove);
+    });
+    function currentQty(id) {
+      var found = window.WKCart.items().filter(function (i) { return i.id === id; })[0];
+      return found ? found.qty : 0;
+    }
+
+    document.addEventListener('wk-cart-change', render);
+    render();
+
+    // Proceed to payment
+    payBtn.addEventListener('click', function () {
+      errEl.hidden = true;
+      var items = window.WKCart.items().map(function (i) { return { id: i.id, qty: i.qty }; });
+      if (!items.length) return;
+
+      payBtn.disabled = true;
+      payBtn.textContent = 'Starting secure checkout…';
+
+      fetch('/.netlify/functions/create-checkout-session', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ items: items }),
+      })
+        .then(function (r) { return r.json().then(function (data) { return { ok: r.ok, data: data }; }); })
+        .then(function (res) {
+          if (res.ok && res.data.url) {
+            window.location.href = res.data.url;
+          } else {
+            throw new Error((res.data && res.data.error) || 'Checkout failed.');
+          }
+        })
+        .catch(function (err) {
+          errEl.textContent = err.message || 'Something went wrong. Please try again.';
+          errEl.hidden = false;
+          payBtn.disabled = false;
+          payBtn.textContent = 'Proceed to Payment';
+        });
+    });
+  </script>
+</body>
+</html>

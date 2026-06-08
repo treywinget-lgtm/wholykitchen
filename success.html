@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thank You | WholyKitchen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Caveat:wght@500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ===== NAVIGATION ===== -->
+  <nav class="navbar">
+    <div class="container nav-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="images/logo.png" alt="WholyKitchen">
+      </a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="shop.html">Shop</a>
+        <a href="contact.html">Contact</a>
+        <a href="shop.html" class="btn btn-primary nav-cta">Order Now</a>
+      </div>
+      <button class="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+  <div class="mobile-menu">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="shop.html">Shop</a>
+    <a href="contact.html">Contact</a>
+    <a href="shop.html" class="btn btn-primary" style="margin-top:1rem">Order Now</a>
+  </div>
+
+  <section class="page-hero" style="text-align:center;">
+    <div class="container">
+      <img src="images/logo.png" alt="WholyKitchen" style="width:140px;margin:0 auto 1.5rem;display:block;">
+      <span class="hero-tag">Order Confirmed</span>
+      <h1>Thank you! 🎉</h1>
+      <p>Your order is in — we're firing up the kitchen. A confirmation receipt is on its way to your email.</p>
+      <div style="margin-top:2rem;">
+        <a href="shop.html" class="btn btn-primary">Keep Shopping</a>
+        <a href="index.html" class="btn btn-outline" style="margin-left:.5rem;">Back Home</a>
+      </div>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+  <script src="cart.js"></script>
+  <script>
+    // Order placed — clear the cart.
+    if (window.WKCart) window.WKCart.clear();
+  </script>
+</body>
+</html>

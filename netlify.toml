@@ -1,0 +1,10 @@
+# Netlify configuration for WholyKitchen
+# Static site served from the repo root, serverless functions in netlify/functions.
+
+[build]
+  publish = "."
+  functions = "netlify/functions"
+
+[functions]
+  # Bundle function dependencies (e.g. stripe) with esbuild.
+  node_bundler = "esbuild"
