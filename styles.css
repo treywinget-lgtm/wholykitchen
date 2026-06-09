@@ -709,6 +709,23 @@ section {
 .products-section {
   background: var(--off-white);
 }
+/* Shop page: light green section background */
+.shop-products {
+  background: #eaf6ea;
+}
+/* Page-hero headings use the messy marker handwritten font */
+.page-hero h1 {
+  font-family: 'Permanent Marker', cursive;
+}
+/* Shop hero: marker font on the tag and subtitle too */
+.shop-hero .hero-tag,
+.shop-hero p {
+  font-family: 'Permanent Marker', cursive;
+}
+.shop-hero .hero-tag {
+  letter-spacing: 0;
+  text-transform: none;
+}
 
 /* Filter tabs (shop page) */
 .product-filters {
