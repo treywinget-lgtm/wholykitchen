@@ -77,6 +77,15 @@
       '<span class="wk-fab-total">' + window.WKmoney(Cart.subtotal()) + '</span>';
   }
 
+  // --- Cart count badge in the navbar (any [data-wk-cart-count] element) ---
+  function renderNavCount() {
+    const count = Cart.count();
+    document.querySelectorAll('[data-wk-cart-count]').forEach(function (el) {
+      el.textContent = count;
+      el.hidden = count === 0;
+    });
+  }
+
   // --- Lightweight toast feedback ---
   function toast(msg) {
     let t = document.getElementById('wk-toast');
@@ -99,6 +108,10 @@
       });
     });
     renderFloating();
+    renderNavCount();
   });
-  document.addEventListener('wk-cart-change', renderFloating);
+  document.addEventListener('wk-cart-change', function () {
+    renderFloating();
+    renderNavCount();
+  });
 })();

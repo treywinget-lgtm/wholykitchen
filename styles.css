@@ -304,6 +304,50 @@ h4 { font-size: 1.1rem; }
   font-size: .85rem !important;
 }
 
+/* Keep the links + cart grouped against the right edge */
+.nav-links {
+  margin-left: auto;
+}
+
+/* Cart icon in the navbar */
+.nav-cart {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 1.5rem;
+  color: var(--gray-dark);
+  transition: var(--transition);
+}
+.nav-cart:hover {
+  color: var(--green);
+  transform: translateY(-1px);
+}
+.nav-cart svg { display: block; }
+.nav-cart-count {
+  position: absolute;
+  top: -7px;
+  right: -10px;
+  min-width: 1.1rem;
+  height: 1.1rem;
+  padding: 0 .32rem;
+  background: var(--green);
+  color: #fff;
+  border-radius: var(--radius-full);
+  font-family: var(--font-body);
+  font-style: normal;
+  font-weight: 700;
+  font-size: .7rem;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+/* An explicit display above overrides the [hidden] default, so restore it */
+.nav-cart-count[hidden] {
+  display: none;
+}
+
 /* Hamburger */
 .hamburger {
   display: none;
@@ -571,25 +615,19 @@ section {
 }
 
 .value-icon {
-  width: 64px; height: 64px;
   margin: 0 auto 1.2rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
-  background: var(--green-muted);
   transition: var(--transition);
 }
 .value-card:hover .value-icon {
-  background: var(--green);
   transform: scale(1.08);
-}
-.value-card:hover .value-icon img {
-  filter: brightness(10);
 }
 
 .value-icon img {
-  width: 28px;
+  width: 110px;
+  height: auto;
   transition: var(--transition);
 }
 
@@ -1412,8 +1450,16 @@ section {
   .nav-links {
     display: none;
   }
+  /* Push the hamburger + cart to the right; cart sits on the far end */
   .hamburger {
     display: flex;
+    order: 2;
+    margin-left: auto;
+  }
+  .nav-cart {
+    order: 3;
+    margin-left: 1.25rem;
+    margin-right: 0;
   }
 
   section {
