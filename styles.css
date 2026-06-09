@@ -23,6 +23,8 @@
   --green-light:  #a8dbf0;
   --green-dark:   #5eb5d6;
   --green-muted:  rgba(168, 216, 240, .15);
+  --pink:         #f5589b;
+  --pink-dark:    #e8458a;
   --black:        #1a1a1a;
   --gray-dark:    #333333;
   --gray:         #666666;
@@ -813,6 +815,35 @@ section {
   font-size: .9rem;
   font-weight: 400;
   margin-left: .4rem;
+}
+
+/* Index "Our Products" section: taller images, centered handwritten cards */
+#products .product-img {
+  height: 400px;
+}
+#products .product-info {
+  text-align: center;
+}
+#products .product-info h3 {
+  font-family: 'Caveat', cursive;
+  font-size: 1.9rem;
+  font-weight: 700;
+  line-height: 1.1;
+}
+/* Smaller pink "Order Now" bubbles in the Caveat font */
+#products .product-info .btn {
+  width: auto;
+  padding: .5rem 1.6rem;
+  font-family: 'Caveat', cursive;
+  font-size: 1.3rem;
+  font-weight: 700;
+  background: var(--pink);
+  border-color: var(--pink);
+  color: #fff;
+}
+#products .product-info .btn:hover {
+  background: var(--pink-dark);
+  border-color: var(--pink-dark);
 }
 
 .product-info p {
