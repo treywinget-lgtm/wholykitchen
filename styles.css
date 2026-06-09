@@ -389,6 +389,40 @@ h4 { font-size: 1.1rem; }
   pointer-events: none;
 }
 
+/* Product-collage backdrop behind the hero logo */
+.hero-product-bg {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 0 3%;
+  z-index: 0;
+  pointer-events: none;
+}
+.hero-product-bg img {
+  width: auto;
+  max-width: min(88%, 820px);
+  height: auto;
+  opacity: .92;
+  filter: none;
+  mix-blend-mode: multiply;
+}
+.hero-product-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 70% 62% at center,
+              rgba(247, 247, 245, .12) 0%,
+              rgba(247, 247, 245, .38) 68%,
+              rgba(247, 247, 245, .70) 100%);
+}
+@media (max-width: 640px) {
+  .hero-product-bg { gap: .4rem; }
+  .hero-product-bg img { opacity: .4; filter: blur(1.5px); }
+}
+
 .hero-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
