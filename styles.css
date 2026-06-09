@@ -1026,12 +1026,14 @@ section {
 
 .about-text h2 {
   margin-bottom: 1rem;
+  font-family: 'Gochi Hand', cursive;
 }
 .about-text p {
   color: var(--gray);
   margin-bottom: 1rem;
-  font-size: 1rem;
-  line-height: 1.8;
+  font-family: 'Gochi Hand', cursive;
+  font-size: 1.1rem;
+  line-height: 1.7;
 }
 .about-text p:last-child {
   margin-bottom: 0;
