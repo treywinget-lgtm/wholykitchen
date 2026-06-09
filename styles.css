@@ -842,6 +842,9 @@ section {
 }
 
 /* Index "Our Products" section: taller images, centered handwritten cards */
+#products .products-grid {
+  gap: .5rem;
+}
 #products .product-img {
   height: 400px;
 }
