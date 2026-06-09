@@ -713,6 +713,13 @@ section {
 .shop-products {
   background: #eaf6ea;
 }
+/* Shop "Know What You're Eating" callout: vintage handwritten italic */
+.shop-callout h2,
+.shop-callout p,
+.shop-callout .banner-badge {
+  font-family: 'Kalam', cursive;
+  font-style: italic;
+}
 /* Page-hero headings use the messy marker handwritten font */
 .page-hero h1 {
   font-family: 'Permanent Marker', cursive;
