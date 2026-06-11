@@ -947,6 +947,13 @@ section {
   font-size: 1.2rem;
   margin-bottom: .75rem;
 }
+.use-heading {
+  font-size: 1rem;
+  margin: 1.25rem 0 .6rem;
+}
+.use-heading:first-of-type {
+  margin-top: 0;
+}
 .ingredients-list {
   list-style: none;
   padding: 0;
