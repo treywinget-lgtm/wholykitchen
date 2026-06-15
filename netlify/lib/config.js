@@ -12,7 +12,7 @@
 const CATALOG = {
   'creamy-peanut-thai': { name: 'Creamy Peanut Thai', price: 1200, weightOz: 8 },
   'sweet-golden-tang':  { name: 'Sweet Golden Tang',  price: 1100, weightOz: 8 },
-  'crack':              { name: 'Crack',              price: 750,  weightOz: 8 }, // TODO: confirm — Crack is a dessert, not a jarred sauce; may differ from 8oz
+  'crack':              { name: 'Crack',              price: 750,  weightOz: 2.5 }, // 70 g ≈ 2.47 oz, rounded up
 };
 
 // === EDIT ME: the address orders ship FROM (origin) ===
