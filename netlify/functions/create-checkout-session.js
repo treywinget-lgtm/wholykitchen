@@ -1,32 +1,29 @@
-/* ===== WholyKitchen - Create Stripe Checkout Session =====
+/* ===== WholyKitchen — Create Stripe Checkout Session =====
    Netlify serverless function.
-   Receives a cart, re-prices it server-side from a trusted catalog,
-   attaches shipping, and creates a Stripe Checkout Session.
+   Receives a cart, destination address, and the customer's chosen USPS
+   service. Re-prices items AND re-fetches the shipping rate server-side
+   (anti-tamper), then creates a Stripe Checkout Session.
 
-   Env var required (set in Netlify -> Site configuration -> Environment variables):
-     STRIPE_SECRET_KEY = sk_test_... (use test key first, swap to live later)
+   Env vars required (Netlify -> Site configuration -> Environment variables):
+     STRIPE_SECRET_KEY = sk_test_...    (test key first, swap to live later)
+     SHIPPO_API_TOKEN  = shippo_test_...(used to re-validate the shipping rate)
 
-   STAGE 1: shipping is a flat rate (FLAT_SHIPPING_CENTS below).
-   STAGE 2 will replace this with a live EasyPost rate chosen on the checkout page.
+   Shipping config (ship-from, weights, services) lives in ../lib/config.js.
 */
 
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
-
-// Authoritative catalog. Prices in cents. The browser never sets the price.
-const CATALOG = {
-  'creamy-peanut-thai': { name: 'Creamy Peanut Thai', price: 1200 },
-  'sweet-golden-tang':  { name: 'Sweet Golden Tang',  price: 1100 },
-  'crack':              { name: 'Crack',              price: 750 },
-};
-
-// Placeholder flat shipping — replaced by real carrier rates in Stage 2.
-const FLAT_SHIPPING_CENTS = 800; // $8.00
+const { CATALOG } = require('../lib/config');
+const { getUspsRates } = require('../lib/shippo');
 
 const json = (statusCode, body) => ({
   statusCode,
   headers: { 'Content-Type': 'application/json' },
   body: JSON.stringify(body),
 });
+
+function validAddress(a) {
+  return a && a.street1 && a.city && a.state && a.zip;
+}
 
 exports.handler = async (event) => {
   if (event.httpMethod !== 'POST') {
@@ -46,6 +43,12 @@ exports.handler = async (event) => {
   const items = Array.isArray(payload.items) ? payload.items : [];
   if (!items.length) {
     return json(400, { error: 'Your cart is empty.' });
+  }
+  if (!validAddress(payload.address)) {
+    return json(400, { error: 'Please enter a complete shipping address.' });
+  }
+  if (!payload.rateService) {
+    return json(400, { error: 'Please choose a shipping option.' });
   }
 
   // Build line items from the trusted catalog only.
@@ -69,8 +72,21 @@ exports.handler = async (event) => {
     });
   }
 
-  // Base URL for redirects, derived from the incoming request so it works on
-  // any domain (netlify.app preview or wholykitchen.com).
+  // Re-fetch rates server-side and confirm the chosen service is real and
+  // priced exactly as offered — the browser cannot dictate the shipping cost.
+  let chosen;
+  try {
+    const rates = await getUspsRates({ toAddress: payload.address, items });
+    chosen = rates.find(r => r.service === payload.rateService);
+  } catch (err) {
+    console.error('Rate re-validation error:', err);
+    return json(502, { error: 'Could not confirm shipping rate. Please try again.' });
+  }
+  if (!chosen) {
+    return json(400, { error: 'That shipping option is no longer available. Please refresh your rates.' });
+  }
+
+  const addr = payload.address;
   const origin =
     (event.headers && (event.headers.origin || (event.headers.host && 'https://' + event.headers.host))) ||
     'https://wholykitchen.com';
@@ -79,16 +95,30 @@ exports.handler = async (event) => {
     const session = await stripe.checkout.sessions.create({
       mode: 'payment',
       line_items,
-      shipping_address_collection: { allowed_countries: ['US'] },
       shipping_options: [
         {
           shipping_rate_data: {
             type: 'fixed_amount',
-            fixed_amount: { amount: FLAT_SHIPPING_CENTS, currency: 'usd' },
-            display_name: 'Standard shipping',
+            fixed_amount: { amount: chosen.amountCents, currency: 'usd' },
+            display_name: chosen.label,
           },
         },
       ],
+      // We already collected the destination address (used for the rate), so
+      // attach it to the payment instead of asking again on Stripe's page.
+      payment_intent_data: {
+        shipping: {
+          name: addr.name || 'Customer',
+          address: {
+            line1: addr.street1,
+            line2: addr.street2 || undefined,
+            city: addr.city,
+            state: addr.state,
+            postal_code: addr.zip,
+            country: 'US',
+          },
+        },
+      },
       phone_number_collection: { enabled: true },
       success_url: origin + '/success.html?session_id={CHECKOUT_SESSION_ID}',
       cancel_url: origin + '/checkout.html',

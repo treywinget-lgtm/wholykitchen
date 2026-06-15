@@ -13,7 +13,7 @@
   const CATALOG = {
     'creamy-peanut-thai': { name: 'Creamy Peanut Thai', price: 1200, image: 'images/creamy-peanut-thai.png' },
     'sweet-golden-tang':  { name: 'Sweet Golden Tang',  price: 1100, image: 'images/sweet-golden-tang.png' },
-    'crack':              { name: 'Crack',              price: 750,  image: 'images/crack.jpeg' },
+    'crack':              { name: 'Crack',              price: 750,  image: 'images/crack.png' },
   };
 
   const KEY = 'wk_cart';

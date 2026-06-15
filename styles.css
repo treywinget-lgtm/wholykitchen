@@ -1932,6 +1932,62 @@ section {
   margin-top: .8rem;
 }
 
+/* ===== Shipping address + live rate picker ===== */
+.address-block {
+  margin-top: 2rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--gray-light);
+}
+.address-block h3 { margin: 0 0 1rem; }
+.address-form input {
+  width: 100%;
+  padding: .8rem 1rem;
+  margin-bottom: .7rem;
+  border: 1.5px solid var(--gray-light);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: .95rem;
+  background: var(--white);
+  color: var(--gray-dark);
+  transition: var(--transition);
+}
+.address-form input::placeholder { color: var(--gray-medium); }
+.address-form input:focus {
+  outline: none;
+  border-color: var(--green);
+  box-shadow: 0 0 0 3px var(--green-muted);
+}
+.address-row {
+  display: grid;
+  grid-template-columns: 1fr 70px 110px;
+  gap: .7rem;
+}
+.address-form .btn-block { margin-top: .4rem; }
+
+.rate-options { margin-top: 1.5rem; }
+.rate-options h4 { margin: 0 0 .8rem; }
+.rate-option {
+  display: flex;
+  align-items: center;
+  gap: .85rem;
+  padding: .9rem 1rem;
+  margin-bottom: .7rem;
+  border: 1.5px solid var(--gray-light);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: var(--transition);
+}
+.rate-option:hover { border-color: var(--green); }
+.rate-option:has(input:checked) {
+  border-color: var(--green);
+  background: var(--green-muted);
+}
+.rate-option input { margin: 0; accent-color: var(--green); }
+.rate-info { display: flex; flex-direction: column; flex: 1; }
+.rate-name { font-weight: 600; color: var(--gray-dark); }
+.rate-days { font-size: .8rem; color: var(--gray); }
+.rate-price { font-weight: 700; color: var(--gray-dark); }
+
 @media (max-width: 768px) {
   .checkout-grid { grid-template-columns: 1fr; }
   .checkout-summary { position: static; }

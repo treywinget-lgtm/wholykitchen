@@ -56,12 +56,35 @@
   <section class="checkout-section">
     <div class="container checkout-grid">
 
-      <!-- Cart items -->
+      <!-- Cart items + shipping -->
       <div class="checkout-items">
         <div id="wk-cart-list"><!-- rendered by JS --></div>
         <div id="wk-cart-empty" class="checkout-empty" hidden>
           <p>Your cart is empty.</p>
           <a href="shop.html" class="btn btn-primary">Browse the Shop</a>
+        </div>
+
+        <!-- Shipping address -->
+        <div id="wk-ship-block" class="address-block" hidden>
+          <h3>Shipping Address</h3>
+          <div class="address-form">
+            <input type="text" id="wk-name" placeholder="Full name" autocomplete="name">
+            <input type="text" id="wk-street1" placeholder="Street address" autocomplete="address-line1">
+            <input type="text" id="wk-street2" placeholder="Apt, suite, etc. (optional)" autocomplete="address-line2">
+            <div class="address-row">
+              <input type="text" id="wk-city" placeholder="City" autocomplete="address-level2">
+              <input type="text" id="wk-state" placeholder="State" maxlength="2" autocomplete="address-level1" style="text-transform:uppercase">
+              <input type="text" id="wk-zip" placeholder="ZIP" inputmode="numeric" autocomplete="postal-code">
+            </div>
+            <button id="wk-get-rates" class="btn btn-outline btn-block">Get Shipping Rates</button>
+            <p id="wk-rates-error" class="checkout-error" hidden></p>
+          </div>
+
+          <!-- Rate options -->
+          <div id="wk-rates" class="rate-options" hidden>
+            <h4>Choose a shipping method</h4>
+            <div id="wk-rates-list"><!-- rendered by JS --></div>
+          </div>
         </div>
       </div>
 
@@ -69,11 +92,11 @@
       <aside class="checkout-summary">
         <h3>Order Summary</h3>
         <div class="summary-row"><span>Subtotal</span><span id="wk-subtotal">$0.00</span></div>
-        <div class="summary-row"><span>Shipping</span><span id="wk-shipping">$8.00</span></div>
+        <div class="summary-row"><span>Shipping</span><span id="wk-shipping">—</span></div>
         <div class="summary-row summary-total"><span>Total</span><span id="wk-total">$0.00</span></div>
         <button id="wk-pay" class="btn btn-primary btn-block" disabled>Proceed to Payment</button>
         <p id="wk-pay-error" class="checkout-error" hidden></p>
-        <p class="checkout-note">🔒 You'll be redirected to Stripe to enter your shipping address and pay securely. Shipping is a flat rate for now.</p>
+        <p class="checkout-note">🔒 Enter your address to see live USPS rates, then pay securely through Stripe.</p>
       </aside>
 
     </div>
@@ -124,14 +147,57 @@
   <script src="cart.js"></script>
   <script>
     // ===== Checkout page logic =====
-    // Flat shipping shown here must match FLAT_SHIPPING_CENTS in the
-    // create-checkout-session function. (Replaced by live rates in Stage 2.)
-    var FLAT_SHIPPING_CENTS = 800;
+    // Flow: review cart -> enter address -> fetch live USPS rates ->
+    // pick a rate -> pay. Shipping is unknown until a rate is selected.
 
     var listEl = document.getElementById('wk-cart-list');
     var emptyEl = document.getElementById('wk-cart-empty');
+    var shipBlock = document.getElementById('wk-ship-block');
+    var ratesWrap = document.getElementById('wk-rates');
+    var ratesList = document.getElementById('wk-rates-list');
+    var getRatesBtn = document.getElementById('wk-get-rates');
+    var ratesErr = document.getElementById('wk-rates-error');
     var payBtn = document.getElementById('wk-pay');
     var errEl = document.getElementById('wk-pay-error');
+
+    // Currently selected shipping rate (null until the customer picks one).
+    var selectedRate = null;
+
+    function readAddress() {
+      return {
+        name: document.getElementById('wk-name').value.trim(),
+        street1: document.getElementById('wk-street1').value.trim(),
+        street2: document.getElementById('wk-street2').value.trim(),
+        city: document.getElementById('wk-city').value.trim(),
+        state: document.getElementById('wk-state').value.trim().toUpperCase(),
+        zip: document.getElementById('wk-zip').value.trim(),
+      };
+    }
+    function addressComplete(a) {
+      return a.name && a.street1 && a.city && a.state.length === 2 && a.zip;
+    }
+
+    // Any cart change invalidates a previously fetched rate (weight changed).
+    function clearRates() {
+      selectedRate = null;
+      ratesWrap.hidden = true;
+      ratesList.innerHTML = '';
+      updateSummary();
+    }
+
+    function updateSummary() {
+      var subtotal = window.WKCart.subtotal();
+      document.getElementById('wk-subtotal').textContent = window.WKmoney(subtotal);
+      if (selectedRate) {
+        document.getElementById('wk-shipping').textContent = window.WKmoney(selectedRate.amountCents);
+        document.getElementById('wk-total').textContent = window.WKmoney(subtotal + selectedRate.amountCents);
+        payBtn.disabled = false;
+      } else {
+        document.getElementById('wk-shipping').textContent = '—';
+        document.getElementById('wk-total').textContent = window.WKmoney(subtotal);
+        payBtn.disabled = true;
+      }
+    }
 
     function render() {
       var items = window.WKCart.items();
@@ -140,15 +206,16 @@
       if (!items.length) {
         listEl.innerHTML = '';
         emptyEl.hidden = false;
+        shipBlock.hidden = true;
         payBtn.disabled = true;
         document.getElementById('wk-subtotal').textContent = window.WKmoney(0);
-        document.getElementById('wk-shipping').textContent = window.WKmoney(0);
+        document.getElementById('wk-shipping').textContent = '—';
         document.getElementById('wk-total').textContent = window.WKmoney(0);
         return;
       }
 
       emptyEl.hidden = true;
-      payBtn.disabled = false;
+      shipBlock.hidden = false;
 
       listEl.innerHTML = items.map(function (i) {
         return '' +
@@ -168,9 +235,7 @@
           '</div>';
       }).join('');
 
-      document.getElementById('wk-subtotal').textContent = window.WKmoney(subtotal);
-      document.getElementById('wk-shipping').textContent = window.WKmoney(FLAT_SHIPPING_CENTS);
-      document.getElementById('wk-total').textContent = window.WKmoney(subtotal + FLAT_SHIPPING_CENTS);
+      updateSummary();
     }
 
     // Quantity / remove controls (event delegation)
@@ -185,14 +250,89 @@
       return found ? found.qty : 0;
     }
 
-    document.addEventListener('wk-cart-change', render);
+    // Cart changes: re-render rows AND drop any stale shipping rate.
+    document.addEventListener('wk-cart-change', function () {
+      clearRates();
+      render();
+    });
     render();
 
-    // Proceed to payment
+    // --- Fetch live shipping rates ---
+    getRatesBtn.addEventListener('click', function () {
+      ratesErr.hidden = true;
+      var address = readAddress();
+      if (!addressComplete(address)) {
+        ratesErr.textContent = 'Please fill in your name and full address (state must be 2 letters).';
+        ratesErr.hidden = false;
+        return;
+      }
+      var items = window.WKCart.items().map(function (i) { return { id: i.id, qty: i.qty }; });
+      if (!items.length) return;
+
+      getRatesBtn.disabled = true;
+      getRatesBtn.textContent = 'Getting rates…';
+
+      fetch('/.netlify/functions/get-rates', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ items: items, address: address }),
+      })
+        .then(function (r) { return r.json().then(function (data) { return { ok: r.ok, data: data }; }); })
+        .then(function (res) {
+          if (!res.ok || !res.data.rates) {
+            throw new Error((res.data && res.data.error) || 'Could not get rates.');
+          }
+          renderRates(res.data.rates);
+        })
+        .catch(function (err) {
+          ratesErr.textContent = err.message || 'Could not get rates. Please try again.';
+          ratesErr.hidden = false;
+        })
+        .finally(function () {
+          getRatesBtn.disabled = false;
+          getRatesBtn.textContent = 'Get Shipping Rates';
+        });
+    });
+
+    function renderRates(rates) {
+      selectedRate = null;
+      updateSummary();
+      ratesList.innerHTML = rates.map(function (rt, idx) {
+        var days = rt.deliveryDays ? (rt.deliveryDays + ' business day' + (rt.deliveryDays > 1 ? 's' : '')) : 'Delivery time varies';
+        return '' +
+          '<label class="rate-option">' +
+            '<input type="radio" name="wk-rate" value="' + rt.service + '" data-amount="' + rt.amountCents + '" data-label="' + rt.label + '"' + (idx === 0 ? '' : '') + '>' +
+            '<span class="rate-info"><span class="rate-name">' + rt.label + '</span>' +
+            '<span class="rate-days">' + days + '</span></span>' +
+            '<span class="rate-price">' + window.WKmoney(rt.amountCents) + '</span>' +
+          '</label>';
+      }).join('');
+      ratesWrap.hidden = false;
+    }
+
+    // Selecting a rate updates the summary.
+    ratesList.addEventListener('change', function (e) {
+      var t = e.target;
+      if (t.name !== 'wk-rate') return;
+      selectedRate = {
+        service: t.value,
+        amountCents: parseInt(t.getAttribute('data-amount'), 10),
+        label: t.getAttribute('data-label'),
+      };
+      updateSummary();
+    });
+
+    // --- Proceed to payment ---
     payBtn.addEventListener('click', function () {
       errEl.hidden = true;
       var items = window.WKCart.items().map(function (i) { return { id: i.id, qty: i.qty }; });
-      if (!items.length) return;
+      if (!items.length || !selectedRate) return;
+      var address = readAddress();
+      if (!addressComplete(address)) {
+        errEl.textContent = 'Please complete your shipping address.';
+        errEl.hidden = false;
+        return;
+      }
 
       payBtn.disabled = true;
       payBtn.textContent = 'Starting secure checkout…';
@@ -200,7 +340,7 @@
       fetch('/.netlify/functions/create-checkout-session', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ items: items }),
+        body: JSON.stringify({ items: items, address: address, rateService: selectedRate.service }),
       })
         .then(function (r) { return r.json().then(function (data) { return { ok: r.ok, data: data }; }); })
         .then(function (res) {
