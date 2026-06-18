@@ -826,6 +826,11 @@ section {
 .product-card:hover .product-info h3 {
   color: var(--green);
 }
+/* Product names in all caps everywhere (cards on home + shop, and detail page titles) */
+.product-info h3,
+.product-detail-info h1 {
+  text-transform: uppercase;
+}
 
 .product-info .price {
   font-size: 1.2rem;
@@ -926,6 +931,10 @@ section {
 .product-detail-desc {
   margin-bottom: 1.5rem;
   color: var(--gray-dark);
+}
+/* Only the "Ingredients" heading uses the simple font; everything else stays handwritten */
+.ingredients-heading {
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
 }
 .product-detail-info .btn {
   background: var(--pink);
