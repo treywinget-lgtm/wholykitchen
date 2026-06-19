@@ -158,46 +158,17 @@
     </div>
   </section>
 
-  <!-- ===== TESTIMONIALS ===== -->
-  <section class="testimonials-section" id="reviews">
+  <!-- ===== WHAT'S INSIDE ===== -->
+  <section class="whats-inside-section" id="whats-inside">
     <div class="container">
-      <div class="section-header fade-up">        <h2>What People Are Saying</h2>
-        <p>Don&rsquo;t just take our word for it&mdash;hear from the WholyKitchen community.</p>
+      <div class="section-header fade-up">        <h2>What's Inside</h2>
+        <p>Simple, real ingredients you can pronounce &mdash; and feel good about.</p>
       </div>
-      <div class="testimonials-grid">
-        <div class="testimonial-card fade-up">
-          <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p>The Creamy Peanut Thai is unreal. I put it on everything now&mdash;rice bowls, spring rolls, even pizza. My kids are obsessed.</p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar">JM</div>
-            <div>
-              <h4>Jessica M.</h4>
-              <span>Verified Buyer</span>
-            </div>
-          </div>
-        </div>
-        <div class="testimonial-card fade-up">
-          <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p>Finally a dressing I can actually feel good about. Clean ingredients, incredible flavor. The Sweet Golden Tang is my new staple.</p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar">DR</div>
-            <div>
-              <h4>David R.</h4>
-              <span>Verified Buyer</span>
-            </div>
-          </div>
-        </div>
-        <div class="testimonial-card fade-up">
-          <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p>They call it Crack for a reason. I bought one bottle to try and came back for six more the same week. Not even exaggerating.</p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar">AT</div>
-            <div>
-              <h4>Ashley T.</h4>
-              <span>Verified Buyer</span>
-            </div>
-          </div>
-        </div>
+      <div class="inside-grid">
+        <div class="inside-card fade-up">Cold pressed, organic, extra-virgin olive oil</div>
+        <div class="inside-card fade-up">Organic raw honey</div>
+        <div class="inside-card fade-up">Organic coconut sugar</div>
+        <div class="inside-card fade-up">100% organic grass-fed butter</div>
       </div>
     </div>
   </section>
@@ -221,6 +192,75 @@
       <h2>Ready to Taste the Difference?</h2>
       <p>Join thousands who have made the switch to real, organic flavor.</p>
       <a href="shop.html" class="btn btn-white btn-lg">Shop All Products &rarr;</a>
+    </div>
+  </section>
+
+  <!-- ===== CUSTOMER REVIEWS ===== -->
+  <section class="reviews-section" id="reviews">
+    <div class="container">
+      <div class="section-header fade-up">
+        <h2>Customer Reviews</h2>
+        <p>See how people are using their sauce &mdash; and share your own.</p>
+      </div>
+
+      <!-- Approved reviews. Add a new .review-card here for each review you approve. -->
+      <div class="reviews-grid fade-up">
+
+        <div class="review-card">
+          <div class="review-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="review-text">"I drizzle the Creamy Peanut Thai over everything &mdash; buddha bowls, grilled chicken, even straight off the spoon. Obsessed."</p>
+          <div class="review-author">&mdash; Maria L.</div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="review-text">"Sweet Golden Tang made my boring salads exciting again. Clean ingredients and SO much flavor."</p>
+          <div class="review-author">&mdash; Devin K.</div>
+        </div>
+
+        <!--
+          TEMPLATE — a review WITH a customer photo. Copy this block, drop the photo
+          in images/reviews/, and fill in the text to publish an approved photo review:
+          <div class="review-card">
+            <div class="review-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <img class="review-photo" src="images/reviews/PHOTO.jpg" alt="Customer photo of the sauce in use">
+            <p class="review-text">"Review text here."</p>
+            <div class="review-author">&mdash; Customer Name</div>
+          </div>
+        -->
+
+      </div>
+
+      <!-- Submission form (Netlify Forms — submissions land in your Netlify dashboard) -->
+      <div class="review-form-wrap fade-up">
+        <h3>Leave a Review</h3>
+        <form name="reviews" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" enctype="multipart/form-data" action="/review-thanks.html" class="review-form">
+          <input type="hidden" name="form-name" value="reviews">
+          <p class="hidden-field"><label>Don't fill this out if you're human: <input name="bot-field"></label></p>
+
+          <input type="text" name="name" placeholder="Your name" autocomplete="name" required>
+          <input type="email" name="email" placeholder="Your email (kept private)" autocomplete="email">
+
+          <span class="rating-label">Your rating</span>
+          <div class="star-rating" role="radiogroup" aria-label="Your rating">
+            <input type="radio" id="rate1" name="rating" value="1" required><label for="rate1" title="1 star" aria-label="1 star">&#9733;</label>
+            <input type="radio" id="rate2" name="rating" value="2"><label for="rate2" title="2 stars" aria-label="2 stars">&#9733;</label>
+            <input type="radio" id="rate3" name="rating" value="3"><label for="rate3" title="3 stars" aria-label="3 stars">&#9733;</label>
+            <input type="radio" id="rate4" name="rating" value="4"><label for="rate4" title="4 stars" aria-label="4 stars">&#9733;</label>
+            <input type="radio" id="rate5" name="rating" value="5"><label for="rate5" title="5 stars" aria-label="5 stars">&#9733;</label>
+          </div>
+
+          <textarea name="review" rows="4" placeholder="Tell us how you use your sauce..." required></textarea>
+
+          <label class="file-label">
+            <span>Add a photo of how you use it (optional)</span>
+            <input type="file" name="photo" accept="image/*">
+          </label>
+
+          <button type="submit" class="btn btn-primary btn-block">Submit Review</button>
+        </form>
+      </div>
+
     </div>
   </section>
 
@@ -253,6 +293,7 @@
           <ul>
             <li><a href="https://www.instagram.com/wholykitchen?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">Instagram</a></li>
             <li><a href="contact.html">Email Us</a></li>
+            <li><a href="index.html#reviews">Leave a Review</a></li>
           </ul>
         </div>
       </div>
@@ -270,5 +311,26 @@
 
   <script src="script.js"></script>
   <script src="cart.js"></script>
+  <script>
+    // Star rating fill (hover + selection) for the review form
+    (function () {
+      var sr = document.querySelector('.star-rating');
+      if (!sr) return;
+      var labels = [].slice.call(sr.querySelectorAll('label'));
+      function valOf(l) { return parseInt(l.getAttribute('for').replace('rate', ''), 10); }
+      function paint(val) {
+        labels.forEach(function (l) { l.classList.toggle('is-filled', valOf(l) <= val); });
+      }
+      function selected() {
+        var c = sr.querySelector('input:checked');
+        return c ? parseInt(c.value, 10) : 0;
+      }
+      labels.forEach(function (l) {
+        l.addEventListener('mouseenter', function () { paint(valOf(l)); });
+      });
+      sr.addEventListener('mouseleave', function () { paint(selected()); });
+      sr.addEventListener('change', function () { paint(selected()); });
+    })();
+  </script>
 </body>
 </html>
