@@ -120,6 +120,23 @@ exports.handler = async (event) => {
         },
       },
       phone_number_collection: { enabled: true },
+      // Stash the cart, address, and chosen rate so the stripe-webhook function
+      // can push this order into Shippo for fulfillment after payment.
+      metadata: {
+        cart: JSON.stringify(items.map(function (i) {
+          var q = parseInt(i.qty, 10);
+          return { id: i.id, qty: (Number.isFinite(q) && q > 0) ? Math.min(q, 99) : 1 };
+        })),
+        ship_name: addr.name || '',
+        ship_street1: addr.street1 || '',
+        ship_street2: addr.street2 || '',
+        ship_city: addr.city || '',
+        ship_state: addr.state || '',
+        ship_zip: addr.zip || '',
+        rate_service: chosen.service,
+        rate_label: chosen.label,
+        rate_cents: String(chosen.amountCents),
+      },
       success_url: origin + '/success.html?session_id={CHECKOUT_SESSION_ID}',
       cancel_url: origin + '/checkout.html',
     });
